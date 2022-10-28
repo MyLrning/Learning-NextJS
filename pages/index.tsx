@@ -20,7 +20,7 @@ const HomePage = () => {
   
 
   useEffect(() => {
-    fetch('/api/avo')
+    fetch('https://avo-store-alpha.vercel.app/')
       .then((response) => response.json())
       .then(({ data }: TAPIAvoResponse) => {
         setProductList(data)
