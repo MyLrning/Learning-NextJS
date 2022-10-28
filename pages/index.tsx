@@ -5,7 +5,7 @@ import ProductList from '@components/ProductList/ProductList'
 import fetch from 'isomorphic-unfetch'
 
 export const getServerSideProps = async () => {
-  const response = await fetch('/api/avo')
+  const response = await fetch('https://avo-store-alpha.vercel.app/');  
   const {data: productList}: TAPIAvoResponse = await response.json();
 
   return {
@@ -15,18 +15,7 @@ export const getServerSideProps = async () => {
   }
 }
 
-const HomePage = () => {
-  const [productList, setProductList] = useState<TProduct[]>([])
-  
-
-  useEffect(() => {
-    fetch('https://avo-store-alpha.vercel.app/')
-      .then((response) => response.json())
-      .then(({ data }: TAPIAvoResponse) => {
-        setProductList(data)
-      })
-  }, [])
-
+const HomePage = ({productList}: {productList: TProduct[]}) => {
   return (
     <Layout>
       <KawaiiHeader />
